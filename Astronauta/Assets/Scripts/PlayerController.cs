@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     GameObject prefabParticles;
+
+    [SerializeField]
+    GameObject pantallaLost;
 
     void Start()
     {
@@ -47,7 +51,9 @@ public class PlayerController : MonoBehaviour
 
                 direccion.y = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
 
-                fuel -= Time.deltaTime;
+                //fuel -= Time.deltaTime;
+
+                fuel = fuel - 2 * Time.deltaTime;
             }
             
         }
@@ -56,6 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             isPlaying = false;
             fuel = 0f;
+            pantallaLost.SetActive(true);
         }
     }
 
@@ -80,5 +87,11 @@ public class PlayerController : MonoBehaviour
 
         Destroy(collision.gameObject);
 
+    }
+
+    public void ClickButtom()
+    {
+        Debug.Log("Ha clicado");
+        SceneManager.LoadScene(0);
     }
 }
