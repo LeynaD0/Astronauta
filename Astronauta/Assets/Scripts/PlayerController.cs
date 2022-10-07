@@ -77,16 +77,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Gasolina")
-        {
-            fuel += 10f;
-            if (fuel > 100f)
-            {
-                fuel = 100f;
-            }
+        
+         if (collision.gameObject.tag == "Gasolina")
+         {
+             fuel += 10f;
+             if (fuel > 100f)
+             {
+                 fuel = 100f;
+             }
 
-            //collision.GetComponent<AudioSource>().Play();
-        }
+                //collision.GetComponent<AudioSource>().Play();
+         }
+        
 
         Instantiate(prefabParticles, collision.transform.position, collision.transform.rotation);
 
