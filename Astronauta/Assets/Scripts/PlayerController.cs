@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
     Rigidbody2D body;
 
     Vector2 direccion;
@@ -27,6 +26,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     GameObject pantallaLost;
+
+    [SerializeField]
+    GameObject musicBackground;
 
     void Start()
     {
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
                 //fuel -= Time.deltaTime;
 
-                fuel = fuel - 2 * Time.deltaTime;
+                fuel = fuel - 5 * Time.deltaTime;
             }
             
         }
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
             isPlaying = false;
             fuel = 0f;
             pantallaLost.SetActive(true);
+            musicBackground.SetActive(false);
         }
     }
 
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
             {
                 fuel = 100f;
             }
+
+            //collision.GetComponent<AudioSource>().Play();
         }
 
         Instantiate(prefabParticles, collision.transform.position, collision.transform.rotation);

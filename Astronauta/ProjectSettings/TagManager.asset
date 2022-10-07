@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gasolina
+  - Diamond
   layers:
   - Default
   - TransparentFX
