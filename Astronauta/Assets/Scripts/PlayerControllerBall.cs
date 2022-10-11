@@ -27,6 +27,9 @@ public class PlayerControllerBall : MonoBehaviour
     [SerializeField]
     GameObject lostScreen;
 
+    [SerializeField]
+    GameObject puertas;
+
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -36,18 +39,23 @@ public class PlayerControllerBall : MonoBehaviour
 
     private void Update()
     {
-        tiempo = tiempo - 5 * Time.deltaTime;
+        tiempo -= Time.deltaTime;
         tiempoText.text = "Tiempo: " + tiempo.ToString("00.00");
         posicion.x = Input.GetAxis("Horizontal") * Time.deltaTime * impulse;
         posicion.y = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
 
-        diamondsText.text = "Diamantes: " + diamonds.ToString();
+        diamondsText.text = "Diamantes: " + diamonds.ToString() + " /10";
 
         if(tiempo <= 0)
         {
-            lostScreen.SetActive(true);
             tiempo = 0f;
             this.enabled = false;
+            lostScreen.SetActive(true);
+        }
+
+        if(diamonds >= 9)
+        {
+            puertas.SetActive(false);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,7 +64,7 @@ public class PlayerControllerBall : MonoBehaviour
         {
             diamonds++;
             Destroy(collision.gameObject);
-            tiempo += 10;
+            tiempo += 20f;
         }
     }
 

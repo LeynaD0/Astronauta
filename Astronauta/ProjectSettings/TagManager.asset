@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gasolina
   - Diamond
+  - Wall
   layers:
   - Default
   - TransparentFX
